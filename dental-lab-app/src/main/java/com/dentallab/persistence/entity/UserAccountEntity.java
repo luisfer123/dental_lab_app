@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "UserAccount")
-public class UserAccount {
+public class UserAccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,16 +37,30 @@ public class UserAccount {
     private LocalDateTime createdAt;
     
     @OneToMany
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRoleEntity> userRoles = new HashSet<>();
 
     // --- Constructors ---
-    public UserAccount() {}
+    public UserAccountEntity() {}
 
-    public UserAccount(String username, String passwordHash) {
+    public UserAccountEntity(String username, String passwordHash) {
         this.username = username;
         this.password = passwordHash;
         this.enabled = true;
         this.locked = false;
+    }
+    
+    public void addRole(RoleEntity role) {
+        UserRoleEntity userRole = new UserRoleEntity(this.getId(), role.getId());
+        userRole.setUser(this);
+        userRole.setRole(role);
+
+        userRoles.add(userRole);
+        role.getUserRoles().add(userRole);
+    }
+
+    public void removeRole(RoleEntity role) {
+        userRoles.removeIf(ur -> ur.getRole().equals(role));
+        role.getUserRoles().removeIf(ur -> ur.getUser().equals(this));
     }
 
     // --- Getters & Setters ---
@@ -74,7 +88,7 @@ public class UserAccount {
         this.password = passwordHash;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -82,7 +96,7 @@ public class UserAccount {
         this.enabled = enabled;
     }
 
-    public Boolean getLocked() {
+    public Boolean isLocked() {
         return locked;
     }
 
@@ -94,11 +108,11 @@ public class UserAccount {
         return createdAt;
     }
     
-    public Set<UserRole> getUserRoles() {
+    public Set<UserRoleEntity> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(Set<UserRole> userRoles) {
+    public void setUserRoles(Set<UserRoleEntity> userRoles) {
         this.userRoles = userRoles;
     }
 
