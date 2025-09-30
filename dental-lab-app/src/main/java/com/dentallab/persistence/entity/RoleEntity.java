@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,13 +23,13 @@ public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // aligns with SERIAL/IDENTITY PKs
-    @Column(name = "id") // BIGINT/INT in your DB
+    @Column(name = "role_id") // BIGINT/INT in your DB
     private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRoleEntity> userRoles = new HashSet<>();
     
     // Optional: add a short machine-friendly code if your schema has it

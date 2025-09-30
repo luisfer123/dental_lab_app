@@ -4,3 +4,11 @@ spring:
     username: springboot_user
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+# Enable debug logging for development profile
+logging:
+  level:
+    root: DEBUG
+    com.dentallab: DEBUG
+jwt:
+  log-tokens: true
