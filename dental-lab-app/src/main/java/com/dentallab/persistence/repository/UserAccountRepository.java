@@ -1,10 +1,12 @@
 package com.dentallab.persistence.repository;
 
-import com.dentallab.persistence.entity.UserAccountEntity;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import com.dentallab.persistence.entity.UserAccountEntity;
 
 /**
  * Repository interface for managing {@link UserAccountEntity} persistence.
@@ -21,5 +23,6 @@ public interface UserAccountRepository extends JpaRepository<UserAccountEntity, 
      * @param username the username of the user
      * @return an {@link Optional} containing the user if found, or empty if not
      */
+	@EntityGraph(attributePaths = {"userRoles", "userRoles.role"})
     Optional<UserAccountEntity> findByUsername(String username);
 }
