@@ -55,7 +55,7 @@ public class DentistPhoneEntity {
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
 
-    public Boolean getPrimary() { return primary; }
+    public Boolean isPrimary() { return primary; }
     public void setPrimary(Boolean primary) { this.primary = primary; }
 
     public Boolean isActive() { return active; }
