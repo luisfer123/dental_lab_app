@@ -358,30 +358,50 @@ CREATE TABLE refresh_token (
 
 -- Dentist phones (1–many)
 CREATE TABLE dentist_phone (
-    phone_id   BIGINT PRIMARY KEY AUTO_INCREMENT,
-    dentist_id BIGINT NOT NULL,
-    phone      VARCHAR(50) NOT NULL,
-    type       VARCHAR(20),   -- e.g., MOBILE, OFFICE, HOME
-    FOREIGN KEY (dentist_id) REFERENCES dentist(dentist_id)
-);
+    phone_id     BIGINT PRIMARY KEY AUTO_INCREMENT,
+    dentist_id   BIGINT NOT NULL,
+    phone        VARCHAR(50) NOT NULL,
+    type         VARCHAR(20),   -- e.g., MOBILE, OFFICE, HOME
+    is_primary   BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (dentist_id) REFERENCES dentist(dentist_id),
+    UNIQUE (dentist_id, phone)
+) ENGINE=InnoDB;
+CREATE INDEX idx_dentist_phone_value ON dentist_phone(phone);
+
 
 -- Dentist emails (1–many)
 CREATE TABLE dentist_email (
-    email_id   BIGINT PRIMARY KEY AUTO_INCREMENT,
-    dentist_id BIGINT NOT NULL,
-    email      VARCHAR(255) NOT NULL,
-    type       VARCHAR(20),   -- WORK, PERSONAL
-    FOREIGN KEY (dentist_id) REFERENCES dentist(dentist_id)
-);
+    email_id     BIGINT PRIMARY KEY AUTO_INCREMENT,
+    dentist_id   BIGINT NOT NULL,
+    email        VARCHAR(255) NOT NULL,
+    type         VARCHAR(20),   -- WORK, PERSONAL
+    is_primary   BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (dentist_id) REFERENCES dentist(dentist_id),
+    UNIQUE (dentist_id, email)
+) ENGINE=InnoDB;
+CREATE INDEX idx_dentist_email_value ON dentist_email(email);
+
 
 -- Dentist addresses (1–many)
 CREATE TABLE dentist_address (
-    address_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    dentist_id BIGINT NOT NULL,
-    address    VARCHAR(255) NOT NULL,
-    type       VARCHAR(20),   -- MAIN, BRANCH, BILLING, etc.
-    FOREIGN KEY (dentist_id) REFERENCES dentist(dentist_id)
-);
+    address_id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    dentist_id   BIGINT NOT NULL,
+    address      VARCHAR(255) NOT NULL,
+    type         VARCHAR(20),   -- MAIN, BRANCH, BILLING, etc.
+    is_primary   BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (dentist_id) REFERENCES dentist(dentist_id),
+    UNIQUE (dentist_id, address)
+) ENGINE=InnoDB;
+CREATE INDEX idx_dentist_address_value ON dentist_address(address);
 
 -- Technician phones (1–many)
 CREATE TABLE technician_phone (
@@ -389,8 +409,14 @@ CREATE TABLE technician_phone (
     technician_id BIGINT NOT NULL,
     phone         VARCHAR(50) NOT NULL,
     type          VARCHAR(20),
-    FOREIGN KEY (technician_id) REFERENCES technician(technician_id)
-);
+    is_primary    BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at    DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_updated  DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (technician_id) REFERENCES technician(technician_id),
+    UNIQUE (technician_id, phone)
+) ENGINE=InnoDB;
+CREATE INDEX idx_technician_phone_value ON technician_phone(phone);
 
 -- Technician emails (1–many)
 CREATE TABLE technician_email (
@@ -398,6 +424,12 @@ CREATE TABLE technician_email (
     technician_id BIGINT NOT NULL,
     email         VARCHAR(255) NOT NULL,
     type          VARCHAR(20),
-    FOREIGN KEY (technician_id) REFERENCES technician(technician_id)
-);
+    is_primary    BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at    DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_updated  DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (technician_id) REFERENCES technician(technician_id),
+    UNIQUE (technician_id, email)
+) ENGINE=InnoDB;
+CREATE INDEX idx_technician_email_value ON technician_email(email);
 

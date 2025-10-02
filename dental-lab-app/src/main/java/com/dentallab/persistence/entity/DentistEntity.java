@@ -1,7 +1,15 @@
 package com.dentallab.persistence.entity;
 
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Dentist")
@@ -39,15 +47,15 @@ public class DentistEntity {
 //    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<WorkPriceEntity> workPrices;
 //    
-//    // Contacts
-//    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<DentistPhoneEntity> phones;
-//
-//    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<DentistEmailEntity> emails;
-//
-//    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<DentistAddressEntity> addresses;
+    // Contacts
+    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DentistPhoneEntity> phones;
+
+    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DentistEmailEntity> emails;
+
+    @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DentistAddressEntity> addresses;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
