@@ -28,7 +28,7 @@ CREATE TABLE user_account (
   password_hash     VARCHAR(255) NOT NULL,
   enabled           BOOLEAN DEFAULT TRUE,
   locked            BOOLEAN DEFAULT FALSE,
-  created_at        DATETIME DEFAULT CURRENT_TIMESTAMP
+  created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 CREATE TABLE user_role (
@@ -54,7 +54,10 @@ CREATE TABLE user_role (
 */
 CREATE TABLE dentist (
   dentist_id  BIGINT PRIMARY KEY AUTO_INCREMENT,
-  name        VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  second_name VARCHAR(255),
+  last_name VARCHAR(255),
+  second_last_name VARCHAR(255),
   clinic_name VARCHAR(255)
 ) ENGINE=InnoDB;
 
