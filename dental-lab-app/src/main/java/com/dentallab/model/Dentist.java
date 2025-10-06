@@ -2,19 +2,21 @@ package com.dentallab.model;
 
 import java.util.List;
 
-public class Dentist {
-
+public class Dentist extends AbstractRoleProfile {
+	
     private Long id;
     private String name;
     private String clinicName;
-    private List<String> phones;
-    private List<String> emails;
-    private List<String> addresses;
+    private String licenseNumber;
+    private String specialty;
+    private List<DentistPhone> phones;
+    private List<DentistEmail> emails;
+    private List<DentistAddress> addresses;
 
     // Constructors --------------------
     public Dentist() {}
 
-    public Dentist(Long id, String name, String clinicName, String phone, String email, String address) {
+    public Dentist(Long id, String name, String clinicName) {
         this.id = id;
         this.name = name;
         this.clinicName = clinicName;
@@ -30,12 +32,12 @@ public class Dentist {
     public String getClinicName() { return clinicName; }
     public void setClinicName(String clinicName) { this.clinicName = clinicName; }
 
-    public List<String> getPhones() { return phones; }
-    public void setPhones(List<String> phones) { this.phones = phones; }
+    public List<DentistPhone> getPhones() { return phones; }
+    public void setPhones(List<DentistPhone> phones) { this.phones = phones; }
 
-    public List<String> getEmails() { return emails; }
-    public void setEmails(List<String> emails) { this.emails = emails; }
+    public List<DentistEmail> getEmails() { return emails; }
+    public void setEmails(List<DentistEmail> emails) { this.emails = emails; }
 
-    public List<String> getAddresses() { return addresses; }
-    public void setAddresses(List<String> addresses) { this.addresses = addresses; }
+    public List<DentistAddress> getAddresses() { return addresses; }
+    public void setAddresses(List<DentistAddress> addresses) { this.addresses = addresses; }
 }

@@ -45,10 +45,12 @@ INSERT INTO role(name) VALUES ('ROLE_ADMIN'), ('ROLE_TECHNICIAN'), ('ROLE_DENTIS
 INSERT INTO user_account (user_id, username, password_hash, enabled, locked)
 VALUES 
   (1, 'ana',     '$2a$10$demo_bcrypt_hash_ana', TRUE, FALSE),
-  (2, 'drlopez', '$2a$10$demo_bcrypt_hash_doc', TRUE, FALSE);
+  (2, 'drlopez', '$2a$10$demo_bcrypt_hash_doc', TRUE, FALSE),
+  (3, 'admin', '$2b$10$ObqAhRNHq54Ki6dzC/l.7OmPv1Kd0uqYD1ZREvAVhqkxIMReKC46m', TRUE, FALSE);
 
 INSERT INTO user_role (user_id, role_id) SELECT 1, role_id FROM role WHERE name='ROLE_TECHNICIAN';
 INSERT INTO user_role (user_id, role_id) SELECT 2, role_id FROM role WHERE name='ROLE_DENTIST';
+INSERT INTO user_role (user_id, role_id) SELECT 3, role_id FROM role WHERE name='ROLE_ADMIN';
 
 -- Dentist
 INSERT INTO dentist (dentist_id, name, clinic_name) 
