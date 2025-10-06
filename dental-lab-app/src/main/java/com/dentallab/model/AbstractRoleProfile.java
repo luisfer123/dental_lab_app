@@ -7,8 +7,9 @@ public abstract class AbstractRoleProfile {
     private String secondName;
     private String lastName;
     private String secondLastName;
-    private String phoneNumber;
-    private String address;
+    private String primaryPhone;
+    private String primaryEmail;
+    private String PrimaryAddress;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -24,10 +25,5 @@ public abstract class AbstractRoleProfile {
 
     public String getSecondLastName() { return secondLastName; }
     public void setSecondLastName(String secondLastName) { this.secondLastName = secondLastName; }
-
-    public String getPhoneNumber() { return phoneNumber; }
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
+    
 }
