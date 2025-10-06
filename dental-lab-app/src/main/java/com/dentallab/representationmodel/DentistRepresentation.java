@@ -5,20 +5,14 @@ import java.util.List;
 
 public class DentistRepresentation extends RepresentationModel<DentistRepresentation> {
 
-    private Long id;
-    private String name;
-    private String clinicName;
+	private String clinicName;
+    private String licenseNumber;
+    private String specialty;
 
     // Contact info as lists of representation models
     private List<DentistPhoneRepresentation> phones;
     private List<DentistEmailRepresentation> emails;
     private List<DentistAddressRepresentation> addresses;
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
 
     public String getClinicName() { return clinicName; }
     public void setClinicName(String clinicName) { this.clinicName = clinicName; }
@@ -31,4 +25,10 @@ public class DentistRepresentation extends RepresentationModel<DentistRepresenta
 
     public List<DentistAddressRepresentation> getAddresses() { return addresses; }
     public void setAddresses(List<DentistAddressRepresentation> addresses) { this.addresses = addresses; }
+    
+    public String getLicenseNumber() { return licenseNumber; }
+    public void setLicenseNumber(String licenseNumber) { this.licenseNumber = licenseNumber; }
+    
+    public String getSpecialty() { return specialty; }
+    public void setSpecialty(String specialty) { this.specialty = specialty; }
 }

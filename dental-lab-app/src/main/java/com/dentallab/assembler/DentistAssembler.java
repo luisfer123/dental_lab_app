@@ -27,8 +27,7 @@ public class DentistAssembler implements RepresentationModelAssembler<Dentist, D
     @Override
     public DentistRepresentation toModel(Dentist dentist) {
         DentistRepresentation repr = new DentistRepresentation();
-        repr.setId(dentist.getId());
-        repr.setName(dentist.getName());
+//        repr.setId(dentist.getId());
         repr.setClinicName(dentist.getClinicName());
 
         if (dentist.getPhones() != null) {
