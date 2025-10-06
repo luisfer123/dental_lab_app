@@ -20,8 +20,17 @@ public class DentistEntity {
     @Column(name = "dentist_id")
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "second_name")
+    private String secondName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "second_last_name")
+    private String secondLastName;
 
     @Column(name = "clinic_name")
     private String clinicName;
@@ -60,8 +69,17 @@ public class DentistEntity {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getSecondName() { return secondName; }
+    public void setSecondName(String secondName) { this.secondName = secondName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getSecondLastName() { return secondLastName; }
+    public void setSecondLastName(String secondLastName) { this.secondLastName = secondLastName; }
 
     public String getClinicName() { return clinicName; }
     public void setClinicName(String clinicName) { this.clinicName = clinicName; }
